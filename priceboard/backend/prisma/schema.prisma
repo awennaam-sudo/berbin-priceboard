@@ -1,0 +1,38 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model Admin {
+  id         Int      @id @default(autoincrement())
+  username   String   @unique @db.VarChar(100)
+  password   String   @db.VarChar(255)
+  created_at DateTime @default(now())
+}
+
+model Product {
+  id         Int      @id @default(autoincrement())
+  name       String   @db.VarChar(200)
+  category   Category
+  price      Decimal  @db.Decimal(10, 2)
+  unit       String   @default("kg") @db.VarChar(50)
+  in_stock   Boolean  @default(true)
+  updated_at DateTime @updatedAt
+}
+
+enum Category {
+  frozen_foods
+  grains
+  vegetables
+}
+model SalesEntry {
+  id         Int      @id @default(autoincrement())
+  worker     String   @db.VarChar(100)
+  amount     Decimal  @db.Decimal(10, 2)
+  note       String?  @db.VarChar(255)
+  date       DateTime @default(now())
+}
