@@ -71,5 +71,14 @@ router.get('/today', authMiddleware, async (req, res) => {
     res.status(500).json({ message: 'Server error' });
   }
 });
-
+// ADMIN — delete a sales entry
+router.delete('/:id', authMiddleware, async (req, res) => {
+  try {
+    await prisma.salesEntry.delete({ where: { id: parseInt(req.params.id) } });
+    res.json({ message: 'Entry deleted' });
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ message: 'Server error' });
+  }
+});
 module.exports = router;
