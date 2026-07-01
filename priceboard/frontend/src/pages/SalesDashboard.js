@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import toast from 'react-hot-toast';
 import api from '../api';
 
-const WORKERS = ['Sandra', 'Nii', 'Angela', 'Hannah'];
+
 const COLORS = { Sandra: '#1a6b3c', Nii: '#1e40af', Angela: '#92400e', Hannah: '#7c3aed' };
 
 function formatPrice(p) {
